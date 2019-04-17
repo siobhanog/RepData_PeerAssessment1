@@ -44,7 +44,7 @@ print(stats_summary)
 ### What is mean total number of steps taken per day?
 #### Question 2 - Histogram of Total number of Steps taken each day
 
-``` {r Total Steps}
+``` {r Total_Steps}
 total_steps_by_date <-  data %>%
                 group_by(date) %>%
                 summarise(steps = sum(steps,na.rm=TRUE))
@@ -68,7 +68,7 @@ ggplot(data=total_steps_by_date,aes(date,steps)) +
 
 #### Question 3 - Calculate Mean and Median Number of Steps by Date
 
-``` {r Average Steps}
+``` {r Average_Steps}
 mean_steps_by_date <-   data %>%
                         group_by(date) %>%
                         summarise(steps = mean(steps,na.rm=TRUE))
@@ -90,7 +90,7 @@ median_steps_by_date <- data %>%
 #### Exploratory Graphs Question 4
 #### Time series Plot of Average Steps Per Day with mean for all days added as yellow line 
 
-```{r Daily Activity}
+```{r Daily_Activity}
 
 ggplot(data=mean_steps_by_date,aes(date,steps),na.rm=TRUE) +
   geom_line(col="blue",size = 1.5 )+
@@ -104,7 +104,7 @@ ggplot(data=mean_steps_by_date,aes(date,steps),na.rm=TRUE) +
 #### Question 5 Analyze avg # steps by time interval
 #### Which is 5-minute interval that, on average, contains the maximum number of steps ?
 
-``` {r Avg Steps per Interval }
+``` {r AvgStepsperInterval }
 mean_steps_by_interval <-   data %>%
     group_by(interval) %>%
     summarise(steps = mean(steps,na.rm=TRUE))

@@ -86,7 +86,7 @@ ggplot(data=total_steps_by_date,aes(date,steps)) +
   labs(x="Date",y="Number of Steps")
 ```
 
-![plot of chunk Total Steps](figure/Total Steps-1.png)
+![plot of chunk Total_Steps](figure/Total_Steps-1.png)
 
 #### Question 3 - Calculate Mean and Median Number of Steps by Date
 
@@ -141,7 +141,7 @@ ggplot(data=mean_steps_by_date,aes(date,steps),na.rm=TRUE) +
 ## Warning: Removed 2 rows containing missing values (geom_path).
 ```
 
-![plot of chunk Daily Activity](figure/Daily Activity-1.png)
+![plot of chunk Daily_Activity](figure/Daily_Activity-1.png)
 
 
 #### Question 5 Analyze avg # steps by time interval
@@ -189,7 +189,7 @@ ggplot(data=mean_steps_by_interval,aes(x=m_interval,y=m_steps)) +
   annotate("text",x=1510,y=140,label=interval_answer,col="red")
 ```
 
-![plot of chunk Avg Steps per Interval](figure/Avg Steps per Interval-1.png)
+![plot of chunk AvgStepsperInterval](figure/AvgStepsperInterval-1.png)
 
 #### Ques 7
 #### Code to describe and show a strategy for imputing missing data

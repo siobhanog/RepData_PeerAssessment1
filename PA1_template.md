@@ -1,12 +1,13 @@
----
+
 ---
 title: "Reproducible Research: Peer Assessment 1"
 author: "Siobhan O Connor"
 date: "4/16/2019"
-output: 
-  html_document:
-  keep_md: true
-
+fig_width: 6 
+fig_height: 4 
+output: html_document
+keep_md: true
+   
 
 ---
 ### Executing with cmd - knit("PA1_template.Rmd","PA1_template.md")
@@ -16,9 +17,6 @@ output:
 
 
 ```r
-knitr::opts_chunk$set(echo = TRUE)
-
-
 library(lubridate)
 library(dplyr)
 library(ggplot2)
@@ -41,6 +39,17 @@ print(msg)
 ```r
 stats_summary <- summary(data)  
 
+str(stats_summary)
+```
+
+```
+##  'table' chr [1:7, 1:3] "Min.   :  0.00  " "1st Qu.:  0.00  " ...
+##  - attr(*, "dimnames")=List of 2
+##   ..$ : chr [1:7] "" "" "" "" ...
+##   ..$ : chr [1:3] "    steps" "     date" "   interval"
+```
+
+```r
 print(stats_summary)
 ```
 
@@ -77,13 +86,23 @@ print(msg)
 ```
 
 ```r
+median_total_steps <- round(median(total_steps_by_date$steps))
+
+msg <- paste("The median total number of steps is ", median_total_steps)
+
+print(msg)
+```
+
+```
+## [1] "The median total number of steps is  10395"
+```
+
+```r
 ## 1. Histogram of Total number of Steps taken each day
 
-ggplot(data=total_steps_by_date,aes(date,steps)) +
-  geom_bar(stat="summary",fun.y="sum",fill="red",col="black")+
-  geom_hline(yintercept=mean_of_total_steps,col="yellow")+
-  ggtitle("Total Number of Steps taken each Day")+
-  labs(x="Date",y="Number of Steps")
+ggplot(data=total_steps_by_date,aes(total_steps_by_date$steps)) +
+   geom_histogram(binwidth=1000,col="blue", fill="purple") + 
+  labs(title="Total Steps", x="Steps", y="Frequency") 
 ```
 
 ![plot of chunk Total_Steps](figure/Total_Steps-1.png)
@@ -211,11 +230,9 @@ total_steps_no_na_by_date <-  data_na_steps_replaced %>%
   group_by(date) %>%
   summarise(steps = sum(steps,na.rm=TRUE))
 
-
-ggplot(data=total_steps_no_na_by_date,aes(date,steps)) +
-  geom_bar(stat="summary",fun.y="sum",fill="purple",col="black")+
-  ggtitle("Total # Steps taken each Day(NAs imputed)")+
-  labs(x="Date",y="Number of Steps")
+ggplot(data=total_steps_no_na_by_date,aes(total_steps_no_na_by_date$steps)) +
+   geom_histogram(binwidth=1000,col="blue", fill="orange") + 
+  labs(title="Total Steps", x="Steps", y="Frequency") 
 ```
 
 ![plot of chunk Imputed_NAs](figure/Imputed_NAs-1.png)
